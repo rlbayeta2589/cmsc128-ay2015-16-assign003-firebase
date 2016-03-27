@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Firebase Assignment</title>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" href="style.css" >
+  </head>
+  <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a class="brand-logo">
+                         <i class="material-icons left">event</i>
+                         Guest Event Attendance
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="card col s5" style="margin-left:3%; margin-right:3%">
+                <div class="card-content">
+                    <div class="row">
+                        <h5>Form</h5>
+                        <form id="guest-form" class="col s12">
+                            <div class="input-field col s12">
+                                <input type='text' id='name' placeholder='Name' style="margin-bottom: 0px;">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type='text' id='org' placeholder='Organization' style="margin-bottom: 0px;">
+                            </div>
+                            <div class="input-field col s12" >
+                                <input type='text' id='contact' placeholder='Contact' style="margin-bottom: 0px;">
+                            </div>
+                        </form>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" id="add-guest" style="float:right;">Add Guest
+                        <i class="material-icons right">send</i>
+                    </button><br/>
+                </div>
+            </div>
+            <div class="card col s6">
+                <div class="card-content col s12">
+                    <h5>Attendees</h5><br/>
+                    <h6 id="none" class="center"><br/>-- Be the first one to sign. --<br/></h6>
+                    <ul id="attendees" class="collapsible" data-collapsible="accordion"></ul>
+                </div>
+            </div>
+        </div>
+
+    
+    <script src="script.js"></script>
+  </body>
+</html>

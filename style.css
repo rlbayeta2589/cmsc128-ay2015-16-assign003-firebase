@@ -1,0 +1,20 @@
+h5 {
+	margin: 0px;
+}
+
+.collapsible-body {
+	display: none;
+}
+
+.collapsible-header {
+	padding-right: 0px;
+}
+
+i {
+	margin: 0px !important;
+}
+
+.guest-info {
+	margin: 2% 10%;
+}
+
