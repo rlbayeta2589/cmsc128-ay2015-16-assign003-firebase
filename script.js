@@ -90,7 +90,7 @@ $(document).ready(function () {
                     '<div class="collapsible-body">',
                         '<ul class="guest-info">',
                             '<li>Organization : '   , guest.organization    , '</li>',
-                            '<li>Contact No : '     , guest.contact         ,'</li>',
+                            '<li>Contact Info: '    , guest.contact         ,'</li>',
                             '<li>Date Attended : '  , guest.__dateAttended  ,'</li>',
                             '<li>Time Attended : '  , guest.__timeAttended  ,'</li>',
                         '</ul>',
