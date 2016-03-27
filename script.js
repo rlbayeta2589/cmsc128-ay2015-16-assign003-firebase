@@ -1,8 +1,13 @@
 "use strict";
 
-var _fb = new Firebase('https://event-guest-data.firebaseio.com/');
+var _fb = new Firebase('https://event-guest-data.firebaseio.com/'),
+    none = '<h6 id="no-data" class="center"><br/>-- Be the first one to sign. --<br/></h6>';
 
 $(document).ready(function () {
+
+    if( !$('#attendees li').length ){
+        $('#none').append(none);
+    }
 
     $('.collapsible').collapsible({
         accordion : false
@@ -38,13 +43,13 @@ $(document).ready(function () {
 
 
         if(!name){
-            return Materialize.toast('Please input your name !', 2500);
+            return Materialize.toast('Please input your name !', 2000);
         }
         if(!organization){
-            return Materialize.toast('Please input your organization !', 2500);
+            return Materialize.toast('Please input your organization !', 2000);
         }
         if(!contact){
-            return Materialize.toast('Please input your contact number !', 2500);
+            return Materialize.toast('Please input your contact number !', 2000);
         }
 
         _fb.push(
@@ -63,14 +68,14 @@ $(document).ready(function () {
           .removeAttr('checked')
           .removeAttr('selected');
 
-        return Materialize.toast( name + ' from ' + organization + ' added !', 2500);
+        return Materialize.toast( name + ' from ' + organization + ' added !', 2000);
     }
 
 
     function addData(data) {
         var guest = data.val(),
             id = data.key(),
-            none = $('#none');
+            none = $('#no-data');
 
         if(none){
             none.remove();
@@ -80,7 +85,7 @@ $(document).ready(function () {
             .append([
                 '<li id="', id ,'">',
                     '<div class="collapsible-header truncate">', guest.name ,
-                        '<i class="material-icons right red">cancel</i>',
+                        '<i id="delete-', id ,'" class="material-icons right red">cancel</i>',
                     '</div>',
                     '<div class="collapsible-body">',
                         '<ul class="guest-info">',
@@ -91,13 +96,43 @@ $(document).ready(function () {
                         '</ul>',
                     '</div>',
                 '</li>'
-            ].join(' '));
+            ].join(''));
 
+
+        $('#'+id).hover(
+            function() {
+                $('#delete-'+id).show();
+            },
+            function() {
+                $('#delete-'+id).hide();
+            }
+        );
+
+        $('#delete-'+id).hide();
+
+        $('#delete-'+id)
+            .click( function() {
+                _fb
+                    .child(id)
+                    .remove( function (err) {
+                        if (err) {
+                            return Materialize.toast('Removing ' + guest.name + ' failed. Please try again.', 2000);
+                        }
+                    });
+
+                return Materialize.toast( guest.name + ' from ' + guest.organization + ' removed !', 2000);
+            });
 
     }
 
     function removeData(data) {
+        var id = data.key();
 
+        $('#'+id).remove();
+
+        if( !$('#attendees li').length ){
+            $('#none').append(none);
+        }
     }
 
 });

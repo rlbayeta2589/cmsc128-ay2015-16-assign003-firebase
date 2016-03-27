@@ -2,6 +2,10 @@ h5 {
 	margin: 0px;
 }
 
+.nav-wrapper {
+	padding-left: 20px;
+}
+
 .collapsible-body {
 	display: none;
 }
