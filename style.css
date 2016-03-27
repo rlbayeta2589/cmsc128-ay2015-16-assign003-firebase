@@ -18,6 +18,10 @@ i {
 	margin: 0px !important;
 }
 
+#div-attend {
+	height: 550px;
+}
+
 .guest-info {
 	margin: 2% 10%;
 }
